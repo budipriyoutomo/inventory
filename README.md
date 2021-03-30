@@ -14,15 +14,3 @@ To run this project please follow below steps :
 
   username : admin@admin.com  
   pass : password
-
-
-Output : 
-
-![alt text](./screenshoot/Dashboard.png)
-![alt text](./screenshoot/users.png)
-![alt text](./screenshoot/edit.png)
-![alt text](./screenshoot/delete.png)
-![alt text](./screenshoot/settings.png)
-
- Find me on  Linkedin  : [My Linkedin profile  link](https://www.linkedin.com/in/monjur-morshed-riyadh-6aaba465/)  \
- Email me : riyadhahmed777@gmail.com
