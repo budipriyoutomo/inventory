@@ -1,6 +1,6 @@
 <?php
 
-class Barangs_model extends CI_Model
+class Requests_model extends CI_Model
 {
 
     public $_table = 'tbarang';
