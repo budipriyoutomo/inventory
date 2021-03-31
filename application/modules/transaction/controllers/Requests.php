@@ -19,7 +19,7 @@ class Requests extends Admin_Base_Controller
     }
 
     public function index()
-    {
+    { 
         $this->data['title'] = 'Manage Purchase Request';
         $this->data['breadcrumbs'] = 'Manage Purchase Request';
         $this->load->view('transaction/requests/manage', $this->data);
