@@ -3,12 +3,13 @@
 class Requests_model extends CI_Model
 {
 
-    public $_table = 'tbarang';
+    public $_tablehead = 'thpr';
+    public $_tabledetail = 'tdpr';
     public $primary_key = 'id';
     public $name = '';
     //public $parent = 'parent';
     
-    public $status = 'status';
+    public $nopr = 'nopr';
 
 
     function __construct()
@@ -28,7 +29,7 @@ class Requests_model extends CI_Model
     public function get_all()
     {
         $this->db->select('*')
-            ->from($this->_table)
+            ->from($this->_tablehead)
             ->order_by($this->primary_key, 'DESC');
         $query = $this->db->get();
         if ($query->num_rows() != 0) {
@@ -38,6 +39,7 @@ class Requests_model extends CI_Model
         }
     }
 
+    
     // get a record by id
     public function get_by_id($id)
     {

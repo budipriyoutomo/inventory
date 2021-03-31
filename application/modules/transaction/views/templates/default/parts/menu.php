@@ -73,48 +73,48 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="treeview">
-                        <a href="<?php echo site_url('admin/requests/'); ?>">
+                        <a href="<?php echo site_url('transaction/requests/'); ?>">
                             <i class="fa fa-edit"></i> <span> Purchase Requisition</span>
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="<?php echo site_url('admin/deliverys/'); ?>">
+                        <a href="<?php echo site_url('transaction/deliverys/'); ?>">
                             <i class="fa fa-edit"></i> <span> Delivery Order </span>
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="<?php echo site_url('admin/receives/'); ?>">
+                        <a href="<?php echo site_url('transaction/receives/'); ?>">
                             <i class="fa fa-edit"></i> <span> Good Receiving </span>
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="<?php echo site_url('admin/wips/'); ?>">
+                        <a href="<?php echo site_url('transaction/wips/'); ?>">
                             <i class="fa fa-edit"></i> <span> Work in Process </span>
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="<?php echo site_url('admin/tgins/'); ?>">
+                        <a href="<?php echo site_url('transaction/tgins/'); ?>">
                             <i class="fa fa-edit"></i> <span> Transfer Goods In </span>
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="<?php echo site_url('admin/tgouts/'); ?>">
+                        <a href="<?php echo site_url('transaction/tgouts/'); ?>">
                             <i class="fa fa-edit"></i> <span> Transfer Goods Out </span>
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="<?php echo site_url('admin/oprrequests/'); ?>">
+                        <a href="<?php echo site_url('transaction/oprrequests/'); ?>">
                             <i class="fa fa-edit"></i> <span> Operational Request </span>
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="<?php echo site_url('admin/adjusments/'); ?>">
+                        <a href="<?php echo site_url('transaction/adjusments/'); ?>">
                             <i class="fa fa-edit"></i> <span> Adjusment </span>
                         </a>
                     </li>
 
                     <li class="treeview">
-                        <a href="<?php echo site_url('admin/opnames/'); ?>">
+                        <a href="<?php echo site_url('transaction/opnames/'); ?>">
                             <i class="fa fa-edit"></i> <span> Stock Opname </span>
                         </a>
                     </li>
