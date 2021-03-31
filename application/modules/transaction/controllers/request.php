@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Barangs extends Admin_Base_Controller
+class Requests extends Admin_Base_Controller
 {
 
     public function __construct()
