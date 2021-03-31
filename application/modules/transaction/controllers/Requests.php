@@ -22,10 +22,10 @@ class Requests extends Admin_Base_Controller
 
     public function index()
     {
-        redirect('admin/barangs/all_barangs/');
+        redirect('transaction/Requests/all_requests/');
     }
 
-    public function all_barangs()
+    public function all_requests()
     {
         
     }
