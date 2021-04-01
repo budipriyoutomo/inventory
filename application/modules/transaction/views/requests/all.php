@@ -14,8 +14,10 @@ if ( $all ) {
 		$row[] = "<tr><td>".$no ++ ."</td>";
 		$row[] = "<td>" . $value['nopr'] . "</td>";
 		$row[] = "<td>" . $value['tanggal'] . "</td>";
-		$row[] = "<td>" . $value['tanggal'] . "</td>";
 		$row[] = "<td>" . $value['idsupplier'] . "</td>";
+		$row[] = "<td>" . $value['status'] . "</td>";
+		$row[] = "<td>" . $value['outlet'] . "</td>";
+		$row[] = "<td>" . $value['keterangan'] . "</td>";
 		//$row[] = "<td>" . $status . "</td>";
         $row[] = "<td style='text-align:center;'><a data-toggle='tooltip' class='btn btn-primary btn-xs edit'  id='" . $id . "' title='Edit'> <i class='fa fa-pencil-square-o'></i> </a>
 				  <a data-toggle='tooltip' class='btn btn-danger btn-xs  delete'  id='" . $id . "' title='Delete'> <i class='fa fa-trash-o'></i> </a></td></tr>";

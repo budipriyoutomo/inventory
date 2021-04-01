@@ -17,7 +17,7 @@ class DbKeyGenerator {
 		$rowResult = $this->CI->db->get ( $tableName )->row_array ();
 		$codeField = $rowResult ['code'];
 		$suffixValue = str_pad ( $codeField + 1, $digitLen, $pad, STR_PAD_LEFT );
-		$resultCode = $keySearch . $suffixValue;
+		$resultCode = $keySearch  . $suffixValue;
 		return $resultCode;
 	}
 }

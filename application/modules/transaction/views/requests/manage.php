@@ -1,13 +1,17 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-default">
+
 			<div class="panel-heading">
+
+
 				<p class="panel-title">Manage all Request
 					<button class="btn btn-success" onclick="create()"><i class="glyphicon glyphicon-plus"></i>
 						Add New Request
 					</button>
 				</p>
 			</div>
+
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-12 col-sm-12 table-responsive">
@@ -17,8 +21,10 @@
 								<th>#</th>
 								<th> PR</th>
 								<th> Tanggal</th>
-								<th> </th>
 								<th> ID Supplier</th>
+								<th> Status</th>
+								<th> Outlet</th>
+								<th> Keterangan</th>
 								<th> Action</th>
 							</tr>
 							</thead>
@@ -27,6 +33,7 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 </div>
@@ -147,4 +154,10 @@
         $('[data-toggle="tooltip"]').tooltip();
 
     });
+</script>
+<script>
+	function create() {
+		window.location = BASE_URL + "transaction/Requests/create"
+	}
+
 </script>
