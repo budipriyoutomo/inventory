@@ -9,7 +9,7 @@ class Requests extends Admin_Base_Controller
     {
         parent::__construct();
         $this->load->model('Requests_model');
-
+        
         // check librarians groups or not
         $group = 'admin';
         if (!$this->ion_auth->in_group($group)) {
@@ -84,6 +84,77 @@ class Requests extends Admin_Base_Controller
         $view = $this->load->view('transaction/requests/add', $data, true);
         $this->output->set_output($view);        
 
+    }
+
+    public function additem_form(){
+
+        $this->setOutputMode(NORMAL);
+
+        if ($this->input->is_ajax_request()) {
+            //$this->data['groups'] = $this->ion_auth->groups()->result();
+            
+            //$this->data['companys'] = json_decode(json_encode($this->Outlets_model->get_all()));
+            $crud = $this->getGroceryCRUD('tbarang', 'barangs', 'All barangs', 'Manage All barangs');
+
+            // data Grid view fields
+            $crud->columns('id', 'itemcode', 'barcode','name','infokemasan', 'qty', 'reorderqty', 'idjenis', 'idsatuan');
+
+            // $crud->unset_add()
+            //      ->unset_export()
+            //      ->unset_print()
+            //      ->unset_delete();
+
+            // Insert form
+            $crud->add_fields('id', 'itemcode', 'barcode','name','infokemasan', 'qty', 'reorderqty', 'idjenis', 'idsatuan');
+
+            // Update form
+            $crud->edit_fields('id', 'itemcode', 'barcode','name','infokemasan', 'qty', 'reorderqty', 'idjenis', 'idsatuan');
+
+            //File upload
+            //$crud->set_field_upload('file_path', 'assets/images/credit');
+
+            // Unset, hide fields
+            $crud->change_field_type('cre_or_up_date', 'invisible')
+                ->change_field_type('cre_or_up_by', 'invisible');
+
+            // Unset, hide fields from view page
+            $crud->unset_read_fields('cre_or_up_by');
+
+            // Required fields
+            $crud->required_fields('id', 'itemcode', 'barcode','name','infokemasan', 'qty', 'reorderqty', 'idjenis', 'idsatuan');
+
+            // Rename field level
+            $crud->display_as('id', ' ID Barang')
+                ->display_as('itemcode', ' Itemcode')
+                ->display_as('barcode', ' Barcode')
+                ->display_as('name', ' Nama Barang')
+                ->display_as('infokemasan', ' Info Kemasan')
+                ->display_as('qty', ' Qty')
+                ->display_as('reorderqty', ' Reorder Qty')
+                ->display_as('idjenis', ' Jenis')
+                ->display_as('idsatuan', ' Satuan');
+
+                $crud->set_relation('idjenis','tjenis','namajenis')
+                ->set_relation('idsatuan','tsatuan','namasatuan');
+    
+
+            // callback functions
+            $crud->callback_column('status', array($this, '_callback_status'))
+                ->callback_before_insert(array($this, 'custom_data_callback'))
+                ->callback_before_update(array($this, 'custom_data_update_callback'))
+                ->callback_read_field('file_path', array($this, '_callback_view_photo'))
+                ->callback_read_field('status', array($this, '_callback_status'));
+
+            // render output result
+            $output = $crud->render();
+            $view = $this->load->view('admin/barangs/v_barangs', (array) $output);
+
+
+            //$view = $this->load->view('transaction/Requests/additem', $this->data, true);
+            $this->output->set_output($view);
+        } else {
+            redirect('admin/dashboard');
+        }
     }
 
 

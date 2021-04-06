@@ -1,16 +1,15 @@
-<form id='create' action="" enctype="multipart/form-data" method="post"
-      accept-charset="utf-8">
+<form id='create' action="" enctype="multipart/form-data" method="post" accept-charset="utf-8">
 	  <div class="col-md-12">
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
-			<div class="row">
+				<div class="row">
 					<div class="col-sm-8"><p class="panel-title">Purchase Request</p></div>
-					<div class="col-sm-4 text-right">
-						<input type="hidden" name="id" value="<?php echo $id; ?>" />
-						<button type="submit" class="btn btn-primary" id="submitbutton"><?php echo $button ?></button>
-						<a href="<?php echo site_url('request') ?>" class="btn btn-default">Cancel</a>
-					</div>
+						<div class="col-sm-4 text-right">
+							<input type="hidden" name="id" value="<?php echo $id; ?>" />
+							<button type="submit" class="btn btn-primary" id="submitbutton"><?php echo $button ?></button>
+							<a href="<?php echo site_url('request') ?>" class="btn btn-default">Cancel</a>
+						</div>
 				</div>
 			</div>
 
@@ -69,22 +68,16 @@
 				</div>
 			</div>
 
-					<div class="panel-body">
-					<div class="row">
+			<div class="panel-body">
+				<div class="row">
 
-					<div class="form-group col-sm-6 col-md-4 col-lg-4">
-						<div id="search-input" class="input-group">
-								<select class='select2' style='width: 100%;' name='itemcode' id='itemcode'></select>
-								<span class="input-group-btn">
-								<button type="button" class="btn btn-primary" id="btnaddbarang" >
-												<i class="fa fa-plus"></i>
-								</button>
-							</span>
+						<div class="form-group col-sm-6 col-md-4 col-lg-4">
+							<div id="search-input" class="input-group">
+									<button type="button" class="btn btn-primary" id="btnaddbarang" onclick="create()" >Add</button>
+							</div>
 						</div>
-					</div>
 					
 
-					<div class="col-md-12 col-sm-12 table-responsive">
 						<table id="list_barang" class="table table-bordered table-hover">
 							<thead>
 							<tr>
@@ -99,55 +92,72 @@
 							</tr>
 							</thead>
 							<tbody id='additem'>
-							<td class="text-center">'+itemcode+'</td>
-							<td class="text-center">'+itemcode+'</td>
-							<td class="text-center">'+itemcode+'</td>
-							<td class="text-center">'+itemcode+'</td>
-							<td class="text-center">'+itemcode+'</td>
-							<td class="text-center" style="width: 100px"><input type="text" name="barang['+barang_row+'][keterangan]"  class="form-control text-center" value=""></td>
-							<td class="text-center" style="width: 100px"><input type="text" name="barang['+barang_row+'][keterangan]"  class="form-control text-center" value=""></td>
-							<td class="text-center"><button type="button" class="hapus-row btn btn-sm btn-danger" onclick="removeBarang(this);"> <i class="fa fa-minus"></i></button></td>
+								<td class="text-center">'+itemcode+'</td>
+								<td class="text-center">'+itemcode+'</td>
+								<td class="text-center">'+itemcode+'</td>
+								<td class="text-center">'+itemcode+'</td>
+								<td class="text-center">'+itemcode+'</td>
+								<td class="text-center" style="width: 100px"><input type="text" name="barang['+barang_row+'][keterangan]"  class="form-control text-center" value=""></td>
+								<td class="text-center" style="width: 100px"><input type="text" name="barang['+barang_row+'][keterangan]"  class="form-control text-center" value=""></td>
+								<td class="text-center"><button type="button" class="hapus-row btn btn-sm btn-danger" onclick="removeBarang(this);"> <i class="fa fa-minus"></i></button></td>
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-			
-		</div>
-		
-	<!--
-
-       
-            <table id="list-barang"
-      				class="table table-bordered vertical-middle detail-barang">
-      				<thead>
-      					<tr id="table-row-header">
-      						<th rowspan="2" class="text-center" style="width: 80px">Item Code</th>
-                  <th rowspan="2" class="text-center" style="width: 120px">Nama </th>
-                  <th rowspan="2" class="text-center" style="width: 120px">Info Kemasan </th>
-                  <th rowspan="2" class="text-center" style="width: 80px">Jenis </th>
-                  <th rowspan="2" class="text-center" style="width: 80px">Satuan </th>
-                  <th rowspan="2" class="text-center" style="width: 80px">Qty </th>
-                  <th rowspan="2" class="text-center" style="width: 380px">Keterangan </th>
-                  <th rowspan="2" class="text-center" >Action </th>
-      						</tr>
-      				</thead>
-              
-      				<tbody id='additem'>
-              
-      				</tbody>
-      				
-      			</table>
-          </div>
-          </div>
-        </div>
-         
-          --> 
-
-</div>
+</div>		
 </form>
-</section>
+
+<!--========================  Item Add Modal  section =================-->
+<div class="modal fade" id="modalItem" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<p class="modal-title" id="myModalLabel"></p>
+			</div>
+
+			<!-- Modal Body -->
+			<div class="modal-body">
+				<div id="modal_data"></div>
+			</div>
+
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default"
+				        data-dismiss="modal">
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	function create() {
+
+$("#modal_data").empty();
+$('.modal-title').text('Add New User'); // Set Title to Bootstrap modal title
+
+$.ajax({
+	type: 'POST',
+	url: BASE_URL + 'transaction/Requests/additem_form',
+	success: function (msg) {
+		$("#modal_data").html(msg);
+		$('#modalItem').modal('show'); // show bootstrap modal
+	},
+	error: function (result) {
+		$("#modal_data").html("Sorry Cannot Load Data");
+	}
+});
+
+}
+
+</script>
+
 <script>
 	$('[data-toggle="tooltip"]').tooltip();
 	$('#user_name').keyup(function () {
