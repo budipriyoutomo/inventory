@@ -6,15 +6,10 @@ class Requests_model extends CI_Model
     public $_tablehead = 'thpr';
     public $_tabledetail = 'tdpr';
     public $primary_key = 'id';
-<<<<<<< HEAD
-    public $nopr = 'nopr';
-    
-=======
     public $name = '';
     //public $parent = 'parent';
     
     public $nopr = 'nopr';
->>>>>>> 65d88cf3a94cd9cd213bd2b70a41adad88dee01a
 
 
     function __construct()
@@ -23,18 +18,9 @@ class Requests_model extends CI_Model
     }
 
     // Insert New records
-<<<<<<< HEAD
-    public function create($insertDatahead,$insertDatadetail)
-    {
-        //$result =
-        if ( $this->db->insert($this->_tablehead, $insertDatahead)) {
-            $result = $this->db->insert($this->_tabledetail, $insertDatadetail);
-        }
-=======
     public function create($insertData)
     {
         $result = $this->db->insert($this->_table, $insertData);
->>>>>>> 65d88cf3a94cd9cd213bd2b70a41adad88dee01a
 
         return $result;
     }
@@ -43,11 +29,7 @@ class Requests_model extends CI_Model
     public function get_all()
     {
         $this->db->select('*')
-<<<<<<< HEAD
-            ->from($this->_table)
-=======
             ->from($this->_tablehead)
->>>>>>> 65d88cf3a94cd9cd213bd2b70a41adad88dee01a
             ->order_by($this->primary_key, 'DESC');
         $query = $this->db->get();
         if ($query->num_rows() != 0) {
@@ -57,10 +39,7 @@ class Requests_model extends CI_Model
         }
     }
 
-<<<<<<< HEAD
-=======
     
->>>>>>> 65d88cf3a94cd9cd213bd2b70a41adad88dee01a
     // get a record by id
     public function get_by_id($id)
     {
