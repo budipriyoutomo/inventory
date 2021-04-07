@@ -112,7 +112,7 @@
 <!--========================  Item Add Modal  section =================-->
 <div class="modal fade" id="modalItem" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<!-- Modal Header -->
 			<div class="modal-header">
@@ -122,7 +122,9 @@
 
 			<!-- Modal Body -->
 			<div class="modal-body">
-				<div id="modal_data"></div>
+			
+							<div id="modal_data"></div>
+				
 			</div>
 
 			<!-- Modal Footer -->
@@ -133,6 +135,7 @@
 				</button>
 			</div>
 		</div>
+	
 	</div>
 </div>
 
