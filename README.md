@@ -1,4 +1,4 @@
-<h1>HMVC Codeigniter AdminLTE admin panel with grocery crud, ion auth and many more </h1> 
+<h1>HMVC Codeigniter AdminLTE admin panel with grocery crud, ion auth  </h1> 
 
 
 To run this project please follow below steps :   
@@ -14,3 +14,9 @@ To run this project please follow below steps :
 
   username : admin@admin.com  
   pass : password
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> d2f0992cb4d7b7ba7f310191d4758efccde15961

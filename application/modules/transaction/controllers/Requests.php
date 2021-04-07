@@ -90,8 +90,17 @@ class Requests extends Admin_Base_Controller
 
         $this->setOutputMode(NORMAL);
         if ($this->input->is_ajax_request()) {
-            $this->data['all'] = $this->Requests_model->get_all();
-            $view = $this->load->view('transaction/requests/additem',$this->data ,true);
+
+            $crud = new grocery_CRUD();
+            $crud->set_table('tbarang');
+            $crud->columns('itemcode','name','infokemasan','qty');
+         
+            $output = $crud->render();
+
+            $view = $this->load->view('admin/barangs/v_barangs', (array) $output);
+       //     $this->_example_output($output);
+            
+            //$view = $this->load->view('transaction/Requests/additem', $this->data, true);
             $this->output->set_output($view);
         } else {
             redirect('transaction/dashboard');
