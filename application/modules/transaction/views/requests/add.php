@@ -1,5 +1,6 @@
+<div class="row">
 <form id='create' action="" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-	  <div class="col-md-12">
+	<div class="col-md-12">
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -64,23 +65,20 @@
 
 			<div class="panel-heading">
 				<div class="row">
-					<div class="col-sm-8"><p class="panel-title">Detail</p></div>
+					<div class="col-sm-10"><p class="panel-title">Detail</p></div>
+					<div class="col-sm-2 text-right"><button id="itemsearch" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalItem"><i class="fa fa-plus"></i> Add Item</button></div>
+					
 				</div>
 			</div>
 
 			<div class="panel-body">
 				<div class="row">
-
-						<div class="form-group col-sm-6 col-md-4 col-lg-4">
-							<div id="search-input" class="input-group">
-									<button type="button" class="btn btn-primary" id="btnaddbarang" onclick="create()" >Add</button>
-							</div>
-						</div>
-					
-
+				
 						<table id="list_barang" class="table table-bordered table-hover">
+						
 							<thead>
 							<tr>
+								<th rowspan="2" class="text-center" style="width: 40px"></th>
 								<th rowspan="2" class="text-center" style="width: 80px">Item Code</th>
 								<th rowspan="2" class="text-center" style="width: 120px">Nama </th>
 								<th rowspan="2" class="text-center" style="width: 120px">Info Kemasan </th>
@@ -88,153 +86,131 @@
 								<th rowspan="2" class="text-center" style="width: 80px">Satuan </th>
 								<th rowspan="2" class="text-center" style="width: 80px">Qty </th>
 								<th rowspan="2" class="text-center" style="width: 380px">Keterangan </th>
-								<th rowspan="2" class="text-center" >Action </th>
 							</tr>
 							</thead>
 							<tbody id='additem'>
-								<td class="text-center">'+itemcode+'</td>
-								<td class="text-center">'+itemcode+'</td>
-								<td class="text-center">'+itemcode+'</td>
-								<td class="text-center">'+itemcode+'</td>
-								<td class="text-center">'+itemcode+'</td>
-								<td class="text-center" style="width: 100px"><input type="text" name="barang['+barang_row+'][keterangan]"  class="form-control text-center" value=""></td>
-								<td class="text-center" style="width: 100px"><input type="text" name="barang['+barang_row+'][keterangan]"  class="form-control text-center" value=""></td>
-								<td class="text-center"><button type="button" class="hapus-row btn btn-sm btn-danger" onclick="removeBarang(this);"> <i class="fa fa-minus"></i></button></td>
+							
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-</div>		
-</form>
+	</div>		
 
-<!--========================  Item Add Modal  section =================-->
-<div class="modal fade" id="modalItem" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<!-- Modal Header -->
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<p class="modal-title" id="myModalLabel"></p>
-			</div>
+	</form>
+</div>
 
-			<!-- Modal Body -->
-			<div class="modal-body">
+
+<!-- Modal -->
+<div class="modal fade" id="modalItem" tabindex="-1" role="dialog" aria-labelledby="modalItemLabel" aria-hidden="true">
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalItemLabel">Select Product Item
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+		</h5>
+      </div>
+      <div class="modal-body table-responsive">
+		<table class="table table-bordered table-hover" id="dtitem" >
+			<thead>
+			<tr>
+				<th>Itemcode</th>
+				<th>Name</th>
+				<th>info Kemasan</th>
+				<th>jenis</th>
+				<th>satuan</th>
+				<th>Action</th>
+			</tr>
+			</thead>
+			<tbody>
 			
-							<div id="modal_data"></div>
-				
-			</div>
+			<?php foreach ($item as $itemall) { ?>
+				<tr>
+				<td><?=$itemall->itemcode?></td>
+				<td><?=$itemall->name?></td>
+				<td><?=$itemall->infokemasan?></td>
+				<td><?=$itemall->namajenis?></td>
+				<td><?=$itemall->namasatuan?></td>
+				<td>
+					<button type="button" class="btn btn-success btn-sm" id="adding"
+					data-itemcode="<?=$itemall->itemcode?>"
+					data-name="<?=$itemall->name?>"
+					data-infokemasan="<?=$itemall->infokemasan?>"
+					data-jenis="<?=$itemall->namajenis?>"
+					data-satuan="<?=$itemall->namasatuan?>"
 
-			<!-- Modal Footer -->
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default"
-				        data-dismiss="modal">
-					Close
-				</button>
-			</div>
-		</div>
-	
-	</div>
+					><i class="glyphicon glyphicon-plus"></i></button>
+				</td>
+				</tr>	
+			<?php }; ?>
+			
+			</tbody>
+		</table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-	function create() {
+$(document).ready(function () {
 
-$("#modal_data").empty();
-$('.modal-title').text('Add New User'); // Set Title to Bootstrap modal title
+	$('#dtitem').DataTable();
+	//$('#removeitem').hide();
+	$('.dataTables_length').addClass('bs-select');
 
-$.ajax({
-	type: 'POST',
-	url: BASE_URL + 'transaction/Requests/additem_form',
-	success: function (msg) {
-		$("#modal_data").html(msg);
-		$('#modalItem').modal('show'); // show bootstrap modal
-	},
-	error: function (result) {
-		$("#modal_data").html("Sorry Cannot Load Data");
-	}
+
+
+	$(document).on('click', '#adding', function() {
+			
+		var itemcodelama = $("#itemcode").val();
+		var itemcodebaru = $(this).data('itemcode');
+  
+		console.log(itemcodelama);
+		console.log(itemcodebaru);
+
+		addbarang($(this).data());
+              
+	});
 });
 
-}
+	var barang_row =0;
 
-</script>
+	function addbarang(data_barang){
+			
+			 html = "<tr>";
+			 html += "<td id='btnaction'><button id='removeitem' type='button' class='hapus-row btn btn-sm btn-danger' onclick='removeBarang(this);' > <i class='fa fa-minus'></i></button></td>";
+			 html += "<td class='text-center'>"+data_barang.itemcode+"<input id = 'itemcode' type='hidden' name='barang["+barang_row+"][itemcodes]' value="+data_barang.itemcode+"></td> ";
+			 html += "<td class='text-center'>"+data_barang.name+"</td> "; 
+			 html += "<td class='text-center'>"+data_barang.infokemasan+"</td> "; 
+			 html += "<td class='text-center'>"+data_barang.jenis+"</td>";
+			 html += "<td class='text-center'>"+data_barang.satuan+"</td>";
+			 html += "<td class='text-center' style='width: 100px'><input type='text' name='barang["+barang_row+"][qty]'  class='form-control text-center' value=''></td>";
+			 html += "<td class='text-center' style='width: 100px'><input type='text' name='barang["+barang_row+"][keterangan]'  class='form-control text-center' value=''></td>";
+			 html += "</tr>";
+			 barang_row++;
+			
 
-<script>
-	$('[data-toggle="tooltip"]').tooltip();
-	$('#user_name').keyup(function () {
+			$('#modalItem').modal('hide');
+			$('#additem').html(html);
 
-		var accountRegex = /^[a-zA-Z_ ]+$/;
-		var user_name = $("#user_name").val();
+	}
 
-		if (!(accountRegex.test(user_name))) {
-			$("#error_user_name").html('The user name contains only characters and underscore.');
-			return false;
-		} else {
-			$("#error_user_name").html('');
+	function removeBarang(self){
+          
+		  var barangCount = $('#list_barang tbody').children();
+		  if (barangCount.length > 0){		
+			$(self).closest('tr').remove();
+			//discoverhargabayar();
+		  }
+			
 		}
-	});
-</script>
-<script>
-	$(document).ready(function () {
-		$('#loader').hide();
-		$('#create').validate({// <- attach '.validate()' to your form
-			// Rules for form validation
-			rules: {
-				username: {
-					required: true
-				}
-			},
-			// Messages for form validation
-			messages: {
-				user_name: {
-					required: 'Please enter user name'
-				}
-			},
-			submitHandler: function (form) {
-
-				var myData = new FormData($("#create")[0]);
-
-				$.ajax({
-					url: BASE_URL + 'admin/user/create',
-					type: 'POST',
-					data: myData,
-					dataType: 'json',
-					cache: false,
-					processData: false,
-					contentType: false,
-					beforeSend: function () {
-						$('#loader').show();
-						$("#submit").prop('disabled', true); // disable button
-					},
-					success: function (data) {
-						
-						if (data.type === 'success') {
-							reload_table();
-							notify_view(data.type, data.message);
-							$('#loader').hide();
-							$("#submit").prop('disabled', false); // disable button
-							$("html, body").animate({scrollTop: 0}, "slow");
-							$('#modalUser').modal('hide'); // hide bootstrap modal
-
-						} else if (data.type === 'danger') {
-							if (data.errors) {
-								$.each(data.errors, function (key, val) {
-									$('#error_' + key).html(val);
-								});
-							}
-							$("#status").html(data.message);
-							$('#loader').hide();
-							$("#submit").prop('disabled', false); // disable button
-							$("html, body").animate({scrollTop: 0}, "slow");
-
-						}
-					}
-				});
-			}
-			// <- end 'submitHandler' callback
-		});                    // <- end '.validate()'
-
-	});
+		
 </script>

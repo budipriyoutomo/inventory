@@ -68,7 +68,7 @@ class Requests extends Admin_Base_Controller
         $user = $this->ion_auth->user($id)->row();
         $outletcode = $this->Master_model->getoutletbyid($user->company);
         $nopr  = $this->dbkeygenerator->getNewKey("thpr","nopr","PR". $outletcode->code);
-
+        
         $data = array(
             'button' => 'Save',
             'breadcrumbs' => "Create Purchase Request",
@@ -78,7 +78,8 @@ class Requests extends Admin_Base_Controller
             'idsupplier' => $this->Master_model->getsupplier($outletcode->idbrand),
             'status' => 1,
             'outlet'=>$this->Master_model->getoutletbyid($outletcode->idoutlet),
-            'keterangan' => set_value('id')
+            'keterangan' => set_value('id'),
+            'item' => $this->Master_model->getbarangall()
         );
 
         $view = $this->load->view('transaction/requests/add', $data, true);
@@ -106,6 +107,7 @@ class Requests extends Admin_Base_Controller
             redirect('transaction/dashboard');
         }
     }
+
 
 
 }
